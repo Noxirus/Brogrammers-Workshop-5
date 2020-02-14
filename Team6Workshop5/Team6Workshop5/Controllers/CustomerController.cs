@@ -95,5 +95,10 @@ namespace Team6Workshop5.Controllers
                 return View();
             }
         }
+        public ActionResult Login()
+        {
+
+            return View();
+        }
     }
 }

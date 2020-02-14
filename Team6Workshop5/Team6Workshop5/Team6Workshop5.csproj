@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDB.cs" />
+    <Compile Include="Models\CustomerLogin.cs" />
     <Compile Include="Models\TravelExpertsDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,6 +170,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
