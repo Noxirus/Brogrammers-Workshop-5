@@ -34,6 +34,8 @@ namespace Team6Workshop5.Models
         [Display(Name = "Province")]
         public string CustProv { get; set; }
         [Required]
+        [RegularExpression(@"^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$",
+         ErrorMessage = "Must be valid postal code")]
         [StringLength(7)]
         [Display(Name = "Postal Code")]
         public string CustPostal { get; set; }
