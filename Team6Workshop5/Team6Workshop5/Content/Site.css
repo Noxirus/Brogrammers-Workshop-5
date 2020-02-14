@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    /*background-image:url('../Images/travel2.jpg');*/
+    color:white;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +23,15 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.jumbotron{
+    text-align: center
+}
+h1 {
+    text-align: center;
+    font-size: 100px;
+}
+h3 {
+    text-align: center;
+    font-size: 30px;
 }

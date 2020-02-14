@@ -140,6 +140,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\travel.jfif" />
+    <Content Include="Images\travel1.jfif" />
+    <Content Include="Images\travel1.jpg" />
+    <Content Include="Images\travel2.jfif" />
+    <Content Include="Images\travel2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
