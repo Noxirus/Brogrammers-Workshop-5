@@ -31,11 +31,12 @@ namespace Team6Workshop5.Controllers
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Customer customer)
         {
             try
             {
-                // TODO: Add insert logic here
+                CustomerDB.CustomerRegister(customer);
 
                 return RedirectToAction("Index");
             }
@@ -48,17 +49,23 @@ namespace Team6Workshop5.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Customer currentCust = CustomerDB.GetCustomerDetails(id);
+            return View(currentCust);
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Customer newCustomer)
         {
             try
             {
-                // TODO: Add update logic here
-
+                Customer currentCust = CustomerDB.GetCustomerDetails(id);
+                int count = CustomerDB.UpdateCustomer(currentCust, newCustomer);
+                if (count == 0)// no update due to concurrency issue
+                    TempData["errorMessage"] = "Update aborted. " +
+                        "Another user changed or deleted this row";
+                else
+                    TempData["errorMessage"] = "";
                 return RedirectToAction("Index");
             }
             catch
