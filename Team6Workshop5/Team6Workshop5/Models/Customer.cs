@@ -52,9 +52,6 @@ namespace Team6Workshop5.Models
         [StringLength(50)]
         [Display(Name = "Email")]
         public string CustEmail { get; set; }
-        [ForeignKey("Agents")]
-        [Display(Name = "Agent ID")]
-        public int AgentId { get; set; }
         [Required]
         [StringLength(25)]
         public string UserName { get; set; }

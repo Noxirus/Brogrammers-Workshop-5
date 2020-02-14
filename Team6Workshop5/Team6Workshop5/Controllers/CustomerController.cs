@@ -13,7 +13,9 @@ namespace Team6Workshop5.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            customer = CustomerDB.GetCustomerDetails(143); // needs to pass in a variable reference to the customer ID
+            int id = Convert.ToInt32(Session["UserID"]);
+            
+            customer = CustomerDB.GetCustomerDetails(id); // needs to pass in a variable reference to the customer ID
             return View(customer);
         }
 
@@ -112,19 +114,22 @@ namespace Team6Workshop5.Controllers
             {
                 if (databaseUser is null)
                 {
-                    ModelState.AddModelError("Error", "User Name is Registered");
+                    //ModelState.AddModelError("Error", "User Name is Registered");
+                    ViewBag.invalid = "invalid User";
                     return View();
                 }
                 
                 else
                 {
+
                     Session["UserID"] = databaseUser.CustomerId;
+                   // userID = (int)Session["UserID"];
 
                    // RedirectToAction("Index", "Home");
                 }
             }
             
-            return View();
+            return RedirectToAction("Index","Customer");
         }
     }
 }

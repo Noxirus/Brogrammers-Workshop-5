@@ -13,7 +13,7 @@ namespace Team6Workshop5.Models
         {
             Customer cust = null;
             string query = "SELECT CustomerId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, " +
-                           "CustHomePhone, CustBusPhone, CustEmail, AgentId, UserName " +
+                           "CustHomePhone, CustBusPhone, CustEmail, UserName " +
                            "FROM Customers " +
                            "WHERE CustomerId = @CustomerId";
 
@@ -38,7 +38,6 @@ namespace Team6Workshop5.Models
                         cust.CustHomePhone = reader["CustHomePhone"].ToString();
                         cust.CustBusPhone = reader["CustBusPhone"].ToString();
                         cust.CustEmail = reader["CustEmail"].ToString();
-                        cust.AgentId = Convert.ToInt32(reader["AgentId"]);
                         cust.UserName = reader["UserName"].ToString();
 
                     }
