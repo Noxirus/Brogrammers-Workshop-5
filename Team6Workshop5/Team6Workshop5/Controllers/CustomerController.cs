@@ -97,7 +97,21 @@ namespace Team6Workshop5.Controllers
         }
         public ActionResult Login()
         {
+            CustomerLogin loginInfo = new CustomerLogin();
 
+            return View(loginInfo);
+        }
+
+        [HttpPost]
+
+        public ActionResult Login(CustomerLogin login)
+        {
+            if(ModelState.IsValid)
+            {
+
+                
+            }
+            
             return View();
         }
     }
