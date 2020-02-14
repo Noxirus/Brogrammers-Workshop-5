@@ -106,10 +106,22 @@ namespace Team6Workshop5.Controllers
 
         public ActionResult Login(CustomerLogin login)
         {
+            var databaseUser = CustomerDB.CustomerLogin(login.UserName);
+
             if(ModelState.IsValid)
             {
-
+                if (databaseUser is null)
+                {
+                    ModelState.AddModelError("Error", "User Name is Registered");
+                    return View();
+                }
                 
+                else
+                {
+                    Session["UserID"] = databaseUser.CustomerId;
+
+                   // RedirectToAction("Index", "Home");
+                }
             }
             
             return View();
