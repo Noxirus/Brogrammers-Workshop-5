@@ -115,5 +115,30 @@ namespace Team6Workshop5.Models
                 }
             return updateCount;
         }
+        public static Customer CustomerLogin(string custUserName)
+        {
+            Customer cust = null;
+            string query = "SELECT CustomerId, UserName, Password " +
+                           "FROM Customers " +
+                           "WHERE UserName = @UserName";
+
+            using (SqlConnection connection = new SqlConnection(TravelExpertsDB.GetConnectionString()))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@UserName", custUserName);
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    while (reader.Read())
+                    {
+                        cust = new Customer();
+                        cust.CustomerId = Convert.ToInt32(reader["CustomerId"]);
+                        cust.UserName = reader["UserName"].ToString();
+                        cust.UserName = reader["Password"].ToString();
+                    }
+                }
+            }
+            return cust;
+        }
     }
 }
