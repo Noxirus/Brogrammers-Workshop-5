@@ -53,8 +53,10 @@ namespace Team6Workshop5.Models
         [ForeignKey("Agents")]
         [Display(Name = "Agent ID")]
         public int AgentId { get; set; }
+        [Required]
         [StringLength(25)]
         public string UserName { get; set; }
+        [Required]
         [StringLength(50)]
         public string Password { get; set; }
 

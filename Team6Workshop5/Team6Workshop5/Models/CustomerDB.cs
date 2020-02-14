@@ -76,42 +76,43 @@ namespace Team6Workshop5.Models
     Customer new_Customer)
         {
             int updateCount = 0;
-            string sql = "UPDATE Customers "
-                + "SET CustFirstName = @CustFirstName, "
-                + "CustLastName = @CustLastName, "
-                + "CustAddress = @CustAddress, "
-                + "CustCity = @CustCity, "
-                + "CustProv = @CustProv, "
-                + "CustPostal = @CustPostal, "
-                + "CustCountry = @CustCountry, "
-                + "CustHomePhone = @CustHomePhone, "
-                + "CustBusPhone = @CustBusPhone, "
-                + "CustEmail = @CustEmail, "
-                + "UserName = @UserName, "
-                + "Password = @Password "
-                + "WHERE CustomerId = @original_CustomerId";
+            
+                string sql = "UPDATE Customers SET "
+                    + "CustFirstName = @CustFirstName, "
+                    + "CustLastName = @CustLastName, "
+                    + "CustAddress = @CustAddress, "
+                    + "CustCity = @CustCity, "
+                    + "CustProv = @CustProv, "
+                    + "CustPostal = @CustPostal, "
+                    + "CustCountry = @CustCountry, "
+                    + "CustHomePhone = @CustHomePhone, "
+                    + "CustBusPhone = @CustBusPhone, "
+                    + "CustEmail = @CustEmail, "
+                    + "UserName = @UserName, "
+                    + "Password = @Password "
+                    + "WHERE CustomerId = @original_CustomerId";
 
-            using (SqlConnection con = new SqlConnection(TravelExpertsDB.GetConnectionString()))
-            {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                using (SqlConnection con = new SqlConnection(TravelExpertsDB.GetConnectionString()))
                 {
-                    cmd.Parameters.AddWithValue("CustFirstName", new_Customer.CustFirstName);
-                    cmd.Parameters.AddWithValue("CustLastName", new_Customer.CustLastName);
-                    cmd.Parameters.AddWithValue("CustAddress", new_Customer.CustAddress);
-                    cmd.Parameters.AddWithValue("CustCity", new_Customer.CustCity);
-                    cmd.Parameters.AddWithValue("CustProv", new_Customer.CustProv);
-                    cmd.Parameters.AddWithValue("CustPostal", new_Customer.CustPostal);
-                    cmd.Parameters.AddWithValue("CustCountry", new_Customer.CustCountry);
-                    cmd.Parameters.AddWithValue("CustHomePhone", new_Customer.CustHomePhone);
-                    cmd.Parameters.AddWithValue("CustBusPhone", new_Customer.CustBusPhone);
-                    cmd.Parameters.AddWithValue("CustEmail", new_Customer.CustEmail);
-                    cmd.Parameters.AddWithValue("UserName", new_Customer.UserName);
-                    cmd.Parameters.AddWithValue("Password", new_Customer.Password);
-                    cmd.Parameters.AddWithValue("original_CustomerId", original_Customer.CustomerId);
-                    con.Open();
-                    updateCount = cmd.ExecuteNonQuery();
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("CustFirstName", new_Customer.CustFirstName);
+                        cmd.Parameters.AddWithValue("CustLastName", new_Customer.CustLastName);
+                        cmd.Parameters.AddWithValue("CustAddress", new_Customer.CustAddress);
+                        cmd.Parameters.AddWithValue("CustCity", new_Customer.CustCity);
+                        cmd.Parameters.AddWithValue("CustProv", new_Customer.CustProv);
+                        cmd.Parameters.AddWithValue("CustPostal", new_Customer.CustPostal);
+                        cmd.Parameters.AddWithValue("CustCountry", new_Customer.CustCountry);
+                        cmd.Parameters.AddWithValue("CustHomePhone", new_Customer.CustHomePhone);
+                        cmd.Parameters.AddWithValue("CustBusPhone", new_Customer.CustBusPhone);
+                        cmd.Parameters.AddWithValue("CustEmail", new_Customer.CustEmail);
+                        cmd.Parameters.AddWithValue("UserName", new_Customer.UserName);
+                        cmd.Parameters.AddWithValue("Password", new_Customer.Password);
+                        cmd.Parameters.AddWithValue("original_CustomerId", original_Customer.CustomerId);
+                        con.Open();
+                        updateCount = cmd.ExecuteNonQuery();
+                    }
                 }
-            }
             return updateCount;
         }
     }
