@@ -120,13 +120,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountBookingsController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountPackBookings.cs" />
+    <Compile Include="Models\AccountBookingsDB.cs" />
+    <Compile Include="Models\AccountBookingsSQL.cs" />
+    <Compile Include="Models\AccountProdBookings.cs" />
+    <Compile Include="Models\BookingsDB.cs" />
+    <Compile Include="Models\Bookings.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDB.cs" />
+    <Compile Include="Models\NEWAccountBookings.cs" />
+    <Compile Include="Models\NewAccountBookingsDB.cs" />
     <Compile Include="Models\TravelExpertsDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -167,6 +177,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Bookings\Index.cshtml" />
+    <Content Include="Views\AccountBookings\Index.cshtml" />
+    <Content Include="Views\AccountBookings\Pack.cshtml" />
+    <Content Include="Views\AccountBookings\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
