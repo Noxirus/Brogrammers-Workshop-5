@@ -168,7 +168,7 @@ namespace Team6Workshop5.Controllers
         {
 
             Session.Abandon();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
     }
 }
