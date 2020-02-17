@@ -14,10 +14,18 @@ namespace Team6Workshop5.Controllers
        
         public ActionResult Index()
         {
-            int id = Convert.ToInt32(Session["UserID"]);
-            
-            customer = CustomerDB.GetCustomerDetails(id); // needs to pass in a variable reference to the customer ID
-            return View(customer);
+            if (Session["UserID"] == null)
+            {
+               return RedirectToAction("Login");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["UserID"]);
+
+                customer = CustomerDB.GetCustomerDetails(id); // needs to pass in a variable reference to the customer ID
+                return View(customer);
+            }
+
         }
       
         // GET: Customer/Details/5
@@ -70,18 +78,27 @@ namespace Team6Workshop5.Controllers
         }
         
         // GET: Customer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            Customer currentCust = CustomerDB.GetCustomerDetails(id);
-            return View(currentCust);
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["UserID"]);
+                Customer currentCust = CustomerDB.GetCustomerDetails(id);
+                return View(currentCust);
+            }
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Customer newCustomer)
+        public ActionResult Edit(Customer newCustomer)
         {
             try
             {
+                int id = Convert.ToInt32(Session["UserID"]);
                 Customer currentCust = CustomerDB.GetCustomerDetails(id);
                 int count = CustomerDB.UpdateCustomer(currentCust, newCustomer);
                 if (count == 0)// no update due to concurrency issue
