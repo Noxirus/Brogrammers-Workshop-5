@@ -11,6 +11,7 @@ namespace Team6Workshop5.Controllers
     {
         Customer customer;
         // GET: Customer
+       
         public ActionResult Index()
         {
             int id = Convert.ToInt32(Session["UserID"]);
@@ -18,13 +19,15 @@ namespace Team6Workshop5.Controllers
             customer = CustomerDB.GetCustomerDetails(id); // needs to pass in a variable reference to the customer ID
             return View(customer);
         }
-
+      
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+           
+           return View();
         }
 
+        
         // GET: Customer/Create
         public ActionResult Create()
         {
@@ -38,16 +41,34 @@ namespace Team6Workshop5.Controllers
         {
             try
             {
-                CustomerDB.CustomerRegister(customer);
+                var custInfo = CustomerDB.GetCustomerInfo(customer.UserName);
 
-                return RedirectToAction("Index");
+
+                if(custInfo != null)
+                {
+                    ViewBag.usertaken = "User ID Already Exist";
+                    return View();
+                }
+
+                else
+                {
+                    customer.Password = Crypto.Hash(customer.Password);
+                    CustomerDB.CustomerRegister(customer);
+
+                    return RedirectToAction("Login");
+                }
+
+
+         
+
+
             }
             catch
             {
                 return View();
             }
         }
-
+        
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
@@ -75,7 +96,7 @@ namespace Team6Workshop5.Controllers
                 return View();
             }
         }
-
+        
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
@@ -115,21 +136,39 @@ namespace Team6Workshop5.Controllers
                 if (databaseUser is null)
                 {
                     //ModelState.AddModelError("Error", "User Name is Registered");
-                    ViewBag.invalid = "invalid User";
+                    ViewBag.invalid = "Invalid User";
                     return View();
                 }
                 
                 else
                 {
+                    //if(databaseUser.Password != Crypto.Hash(login.Password))
 
-                    Session["UserID"] = databaseUser.CustomerId;
-                   // userID = (int)Session["UserID"];
 
-                   // RedirectToAction("Index", "Home");
+                    if(string.Compare(Crypto.Hash(login.Password),databaseUser.Password)==0)
+              
+                    {
+                        ViewBag.Password = "Invalid Password";
+                        return View();
+                    }
+
+                    else
+                    {
+                        Session["UserID"] = databaseUser.CustomerId;
+
+                    }
+                    
                 }
             }
-            
+           
             return RedirectToAction("Index","Customer");
+        }
+
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
