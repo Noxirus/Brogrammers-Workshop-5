@@ -60,16 +60,19 @@ namespace Team6Workshop5.Controllers
 
                 else
                 {
+                    if (customer.CustEmail == null)
+                    {
+                        customer.CustEmail = "";
+                    }
+                    if (customer.CustBusPhone == null)
+                    {
+                        customer.CustBusPhone = "";
+                    }
                     customer.Password = Crypto.Hash(customer.Password);
                     CustomerDB.CustomerRegister(customer);
 
                     return RedirectToAction("Login");
                 }
-
-
-         
-
-
             }
             catch
             {
@@ -101,6 +104,14 @@ namespace Team6Workshop5.Controllers
                 int id = Convert.ToInt32(Session["UserID"]);
                 Customer currentCust = CustomerDB.GetCustomerDetails(id);
                 newCustomer.Password = Crypto.Hash(newCustomer.Password);
+                if (newCustomer.CustEmail == null)
+                {
+                    newCustomer.CustEmail = "";
+                }
+                if(newCustomer.CustBusPhone == null)
+                {
+                    newCustomer.CustBusPhone = "";
+                }
                
                 int count = CustomerDB.UpdateCustomer(currentCust, newCustomer);
                 if (count == 0)// no update due to concurrency issue
@@ -175,7 +186,7 @@ namespace Team6Workshop5.Controllers
                     else
                     {
                         Session["UserID"] = databaseUser.CustomerId;
-
+                        Session["CustFirstName"] = databaseUser.CustFirstName;
                     }
                     
                 }

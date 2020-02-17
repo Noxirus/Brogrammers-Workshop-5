@@ -45,7 +45,6 @@ namespace Team6Workshop5.Models
         [StringLength(20)]
         [Display(Name = "Home Phone")]
         public string CustHomePhone { get; set; }
-        [Required]
         [StringLength(20)]
         [Display(Name = "Business Phone")]
         public string CustBusPhone { get; set; }

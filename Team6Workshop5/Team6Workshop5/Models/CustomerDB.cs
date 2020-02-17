@@ -117,7 +117,7 @@ namespace Team6Workshop5.Models
         public static Customer CustomerLogin(string custUserName)
         {
             Customer cust = null;
-            string query = "SELECT CustomerId, UserName, Password " +
+            string query = "SELECT CustomerId, UserName, Password, CustFirstName " +
                            "FROM Customers " +
                            "WHERE UserName = @UserName";
 
@@ -134,6 +134,7 @@ namespace Team6Workshop5.Models
                         cust.CustomerId = Convert.ToInt32(reader["CustomerId"]);
                         cust.UserName = reader["UserName"].ToString();
                         cust.UserName = reader["Password"].ToString();
+                        cust.CustFirstName = reader["CustFirstName"].ToString();
                     }
                 }
             }
