@@ -57,6 +57,12 @@ namespace Team6Workshop5.Models
         [Required]
         [StringLength(50)]
         public string Password { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password",ErrorMessage ="Pasword Does Not Match")]
+        public string ConfirmPassword { get; set; }
+
 
     }
 }
