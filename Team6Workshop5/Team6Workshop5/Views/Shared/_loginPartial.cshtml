@@ -1,12 +1,13 @@
 ﻿@if (Session["UserID"] == null)
 
 {<ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-        <li>@Html.ActionLink("Your Account", "Login", "Customer")</li>
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("About", "About", "Home")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <li>@Html.ActionLink("Your Account", "Login", "Customer")</li>
 
-    </ul>
+
+</ul>
 
     <ul class="nav navbar-nav navbar-right">
 
@@ -30,6 +31,7 @@ else
         <li>@Html.ActionLink("About", "About", "Home")</li>
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
         <li>@Html.ActionLink("Your Account", "Index", "Customer")</li>
+        
 
     </ul>
     
@@ -37,6 +39,9 @@ else
 
         <li>
             @Html.ActionLink("Hello " + Session["CustFirstName"], "Index", "Customer", null, null)
+        </li>
+        <li>
+            @Html.ActionLink("Your Bookings", "CustomerBookings", "Customer")
         </li>
 
         <li>
