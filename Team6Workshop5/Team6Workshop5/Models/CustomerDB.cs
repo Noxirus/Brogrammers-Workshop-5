@@ -133,7 +133,7 @@ namespace Team6Workshop5.Models
                         cust = new Customer();
                         cust.CustomerId = Convert.ToInt32(reader["CustomerId"]);
                         cust.UserName = reader["UserName"].ToString();
-                        cust.UserName = reader["Password"].ToString();
+                        cust.Password = reader["Password"].ToString();
                         cust.CustFirstName = reader["CustFirstName"].ToString();
                     }
                 }

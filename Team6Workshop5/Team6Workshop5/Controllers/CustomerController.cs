@@ -27,7 +27,25 @@ namespace Team6Workshop5.Controllers
             }
 
         }
-      
+
+        public ActionResult CustomerBookings()
+        {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                List<NEWAccountBookings> accPackBookingsList = new List<NEWAccountBookings>();
+                int id = Convert.ToInt32(Session["UserID"]);
+
+                accPackBookingsList = NewAccountBookingsDB.GetPackBookings(id);
+
+
+                return View(accPackBookingsList);
+            }
+        }
+
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
@@ -160,9 +178,10 @@ namespace Team6Workshop5.Controllers
 
         public ActionResult Login(CustomerLogin login)
         {
-            var databaseUser = CustomerDB.CustomerLogin(login.UserName);
+            Customer databaseUser = new Customer();
+            databaseUser = CustomerDB.CustomerLogin(login.UserName);
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if (databaseUser is null)
                 {
@@ -173,10 +192,11 @@ namespace Team6Workshop5.Controllers
                 
                 else
                 {
+                    var databasePassword = databaseUser.Password;
                     //if(databaseUser.Password != Crypto.Hash(login.Password))
 
-
-                    if(string.Compare(Crypto.Hash(login.Password),databaseUser.Password)==0)
+                    int results = (string.Compare(Crypto.Hash(login.Password), databasePassword));
+                    if (results != 0)
               
                     {
                         ViewBag.Password = "Invalid Password";
