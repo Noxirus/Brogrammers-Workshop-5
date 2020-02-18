@@ -14,9 +14,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PACKCustFirstName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PACKProdName)
         </th>
         <th>
@@ -35,12 +32,9 @@
 
     @foreach (var item in Model)
     {
-        if ((item.PACKCustFirstName) != null)
+        if ((item.PACKProdName) != null)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PACKCustFirstName)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PACKProdName)
                 </td>
@@ -55,9 +49,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PACKBookingId)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
 
@@ -94,9 +85,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PRODCustFirstName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PRODProdName)
         </th>
         <th>
@@ -114,12 +102,9 @@
     @foreach (var items in Model)
     {
 
-        if ((items.PRODCustFirstName) != null)
+        if ((items.PRODProdName) != null)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => items.PRODCustFirstName)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => items.PRODProdName)
                 </td>
@@ -128,9 +113,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => items.PRODBookingId)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }
