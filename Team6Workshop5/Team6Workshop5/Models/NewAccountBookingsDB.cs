@@ -9,7 +9,7 @@ namespace Team6Workshop5.Models
     public class NewAccountBookingsDB
     {
         public List<int?> testList = new List<int?>();
-        public static List<NEWAccountBookings> GetPackBookings()
+        public static List<NEWAccountBookings> GetPackBookings(int custId)
         {
             List<NEWAccountBookings> accPackBookingsList = new List<NEWAccountBookings>();
 
@@ -24,7 +24,7 @@ namespace Team6Workshop5.Models
                             + "on BD.ProductSupplierId= PS.ProductSupplierId "
                             + "join Products as P "
                             + "on Ps.ProductId=P.ProductId "
-                            + "where C.CustomerId=143 ";
+                            + "where C.CustomerId = @CustomerId ";
 
             string sql2 = "Select C.CustFirstName, P.ProdName, BD.BasePrice, B.BookingId from "
                             + "Customers as C join Bookings as B "
@@ -35,7 +35,7 @@ namespace Team6Workshop5.Models
                             + "on BD.ProductSupplierId= PS.ProductSupplierId "
                             + "join Products as P "
                             + "on Ps.ProductId=P.ProductId "
-                            + "where B.BookingId != @BookingId AND C.CustomerId = 143 ";
+                            + "where B.BookingId != @BookingId AND C.CustomerId = @CustomerId ";
 
             using (SqlConnection con = new SqlConnection(TravelExpertsDB.GetConnectionString()))
             {
@@ -44,6 +44,7 @@ namespace Team6Workshop5.Models
 
                 using (SqlCommand cmd = new SqlCommand(sql1, con))
                 {
+                    cmd.Parameters.AddWithValue("@CustomerId", custId);
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
 
@@ -76,6 +77,7 @@ namespace Team6Workshop5.Models
                 }
                 using (SqlCommand cmd = new SqlCommand(sql2, con))
                 {
+                    cmd.Parameters.AddWithValue("@CustomerId", custId);
                     cmd.Parameters.AddWithValue("@BookingId", packbooking.PACKBookingId);
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
