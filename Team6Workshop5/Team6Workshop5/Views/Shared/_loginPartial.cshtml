@@ -4,21 +4,21 @@
     <li>@Html.ActionLink("Home", "Index", "Home")</li>
     <li>@Html.ActionLink("About", "About", "Home")</li>
     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    <li>@Html.ActionLink("Your Account", "Login", "Customer")</li>
 
 
 </ul>
 
-    <ul class="nav navbar-nav navbar-right">
+ <ul class="nav navbar-nav navbar-right">
 
-        <li>
-            @Html.ActionLink("Register", "Create", "Customer", null, null)
-        </li>
+     <li>@Html.ActionLink("Your Account", "Login", "Customer")</li>
+     <li>
+         @Html.ActionLink("Register", "Create", "Customer", null, null)
+     </li>
 
-        <li>
-            @Html.ActionLink("Login", "Login", "Customer", null, null)
-        </li>
-    </ul>
+     <li>
+         @Html.ActionLink("Login", "Login", "Customer", null, null)
+     </li>
+ </ul>
 
 }
 
@@ -30,7 +30,6 @@ else
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
         <li>@Html.ActionLink("About", "About", "Home")</li>
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-        <li>@Html.ActionLink("Your Account", "Index", "Customer")</li>
         
 
     </ul>
@@ -43,6 +42,8 @@ else
         <li>
             @Html.ActionLink("Your Bookings", "CustomerBookings", "Customer")
         </li>
+
+        <li>@Html.ActionLink("Your Account", "Index", "Customer")</li>
 
         <li>
             @Html.ActionLink("Logout", "Logout", "Customer", null, null)

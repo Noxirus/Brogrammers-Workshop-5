@@ -11,14 +11,9 @@
 
 @* FOR PACKAGES *@
 
+<h3>Packages</h3>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PACKProdName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PACKBasePrice)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.PACKPkgName)
         </th>
@@ -35,12 +30,6 @@
         if ((item.PACKProdName) != null)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PACKProdName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PACKBasePrice)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PACKPkgName)
                 </td>
@@ -81,7 +70,7 @@
 </table>
 
 @* FOR PRODUCTS *@
-
+<h3>Products</h3>
 <table class="table">
     <tr>
         <th>
