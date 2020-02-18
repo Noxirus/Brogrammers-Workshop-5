@@ -1,0 +1,165 @@
+﻿
+@model IEnumerable<Team6Workshop5.Models.NEWAccountBookings>
+
+
+@{
+    ViewBag.Title = "Pack";
+}
+
+<h2>Bookings</h2>
+
+
+@* FOR PACKAGES *@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKCustFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKProdName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKBasePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKPkgName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKPkgBasePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKBookingId)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if ((item.PACKCustFirstName) != null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKCustFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKProdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKBasePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKPkgName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKPkgBasePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKBookingId)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+
+        }
+    }
+
+</table>
+
+@* FOR PACK TOTAL *@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKTotal)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if ((item.PACKTotal) != null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKTotal)
+                </td>
+
+            </tr>
+        }
+    }
+
+</table>
+
+@* FOR PRODUCTS *@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODCustFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODProdName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODBasePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODBookingId)
+        </th>
+        <th></th>
+    </tr>
+
+
+
+
+    @foreach (var items in Model)
+    {
+
+        if ((items.PRODCustFirstName) != null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => items.PRODCustFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.PRODProdName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.PRODBasePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.PRODBookingId)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>
+
+@* FOR PACK TOTAL *@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODTotal)
+        </th>
+    </tr>
+
+    @foreach (var items in Model)
+    {
+        if ((items.PRODTotal) != null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => items.PRODTotal)
+                </td>
+
+            </tr>
+        }
+    }
+
+</table>
+
+
