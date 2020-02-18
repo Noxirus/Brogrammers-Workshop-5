@@ -46,7 +46,9 @@ namespace Team6Workshop5.Models
                 {
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-                    
+
+                    decimal? test = 0;
+
                     while (dr.Read())
                     {
                         packbooking.PACKCustFirstName = dr["CustFirstName"].ToString();
@@ -55,14 +57,21 @@ namespace Team6Workshop5.Models
                         packbooking.PACKPkgName = dr["PkgName"].ToString();
                         packbooking.PACKPkgBasePrice = Convert.ToDecimal(dr["PkgBasePrice"]);
                         packbooking.PACKBookingId = Convert.ToInt32(dr["BookingId"]);
-                        accPackBookingsList.Add(packbooking);
-
-                        //var test = accPackBookingsList.Count();
-                        //testList.Add(test);
+                       
                         
+                        test += packbooking.PACKBasePrice;
+                        test += packbooking.PACKPkgBasePrice;
+
+                        //sending the packes information to the list
+                        accPackBookingsList.Add(packbooking);
 
                     }
                     dr.Close();
+
+                    NEWAccountBookings packbookingtest = new NEWAccountBookings();
+                    packbookingtest.PACKTotal = test;
+                    accPackBookingsList.Add(packbookingtest);
+
                     con.Close();
                 }
                 using (SqlCommand cmd = new SqlCommand(sql2, con))
@@ -71,6 +80,8 @@ namespace Team6Workshop5.Models
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     NEWAccountBookings prodbooking;
+                    
+                    decimal? test = 0;
                     while (dr.Read())
                     {
                         prodbooking = new NEWAccountBookings();
@@ -78,9 +89,20 @@ namespace Team6Workshop5.Models
                         prodbooking.PRODProdName = dr["ProdName"].ToString();
                         prodbooking.PRODBasePrice = Convert.ToDecimal(dr["BasePrice"]);
                         prodbooking.PRODBookingId = Convert.ToInt32(dr["BookingId"]);
+
+
+                        
+                        test += prodbooking.PRODBasePrice;
+                        
+
+                        //sending the packes information to the list
                         accPackBookingsList.Add(prodbooking);
                     }
                     dr.Close();
+
+                    NEWAccountBookings prodbookingtest = new NEWAccountBookings();
+                    prodbookingtest.PRODTotal = test;
+                    accPackBookingsList.Add(prodbookingtest);
                 }
             }
             return accPackBookingsList;

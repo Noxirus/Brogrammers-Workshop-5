@@ -6,12 +6,10 @@
     ViewBag.Title = "Pack";
 }
 
-<h2>Pack</h2>
+<h2>Bookings</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
+@* FOR PACKAGES *@
 
 <table class="table">
     <tr>
@@ -58,13 +56,40 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PACKBookingId)
                 </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                </td>
             </tr>
-            
+
         }
     }
 
 </table>
 
+@* FOR PACK TOTAL *@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKTotal)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if ((item.PACKTotal) != null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PACKTotal)
+                </td>
+
+            </tr>
+        }
+    }
+
+</table>
+
+@* FOR PRODUCTS *@
 
 <table class="table">
     <tr>
@@ -88,6 +113,7 @@
 
     @foreach (var items in Model)
     {
+
         if ((items.PRODCustFirstName) != null)
         {
             <tr>
@@ -104,12 +130,36 @@
                     @Html.DisplayFor(modelItem => items.PRODBookingId)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }
     }
 
+
 </table>
+
+@* FOR PACK TOTAL *@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODTotal)
+        </th>
+    </tr>
+
+    @foreach (var items in Model)
+    {
+        if ((items.PRODTotal) != null)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => items.PRODTotal)
+                </td>
+
+            </tr>
+        }
+    }
+
+</table>
+
+
