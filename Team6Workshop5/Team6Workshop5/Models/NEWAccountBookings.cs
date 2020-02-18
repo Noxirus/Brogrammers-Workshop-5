@@ -7,6 +7,8 @@ namespace Team6Workshop5.Models
 {
     public class NEWAccountBookings
     {
+
+        //PACKAGES
        
             public string PACKCustFirstName { get; set; }
             public string PACKProdName { get; set; }
