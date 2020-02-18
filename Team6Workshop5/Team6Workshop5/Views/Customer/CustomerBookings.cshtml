@@ -6,7 +6,7 @@
     ViewBag.Title = "Pack";
 }
 
-<h2>Bookings</h2>
+<h1>Bookings</h1>
 
 
 @* FOR PACKAGES *@
@@ -70,7 +70,7 @@
         if ((item.PACKTotal) != null)
         {
             <tr>
-                <td>
+                <td style="color:red">
                     @Html.DisplayFor(modelItem => item.PACKTotal)
                 </td>
 
@@ -134,7 +134,7 @@
         if ((items.PRODTotal) != null)
         {
             <tr>
-                <td>
+                <td style="color:red">
                     @Html.DisplayFor(modelItem => items.PRODTotal)
                 </td>
 
