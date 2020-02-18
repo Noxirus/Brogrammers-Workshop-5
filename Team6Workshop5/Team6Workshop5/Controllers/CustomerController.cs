@@ -27,7 +27,25 @@ namespace Team6Workshop5.Controllers
             }
 
         }
-      
+
+        public ActionResult CustomerBookings()
+        {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                List<NEWAccountBookings> accPackBookingsList = new List<NEWAccountBookings>();
+                int id = Convert.ToInt32(Session["UserID"]);
+
+                accPackBookingsList = NewAccountBookingsDB.GetPackBookings(id);
+
+
+                return View(accPackBookingsList);
+            }
+        }
+
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
