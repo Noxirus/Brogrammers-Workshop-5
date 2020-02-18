@@ -11,18 +11,31 @@ namespace Team6Workshop5.Controllers
     {
         Customer customer;
         // GET: Customer
+       
         public ActionResult Index()
         {
-            customer = CustomerDB.GetCustomerDetails(143); // needs to pass in a variable reference to the customer ID
-            return View(customer);
-        }
+            if (Session["UserID"] == null)
+            {
+               return RedirectToAction("Login");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["UserID"]);
 
+                customer = CustomerDB.GetCustomerDetails(id); // needs to pass in a variable reference to the customer ID
+                return View(customer);
+            }
+
+        }
+      
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+           
+           return View();
         }
 
+        
         // GET: Customer/Create
         public ActionResult Create()
         {
@@ -36,34 +49,75 @@ namespace Team6Workshop5.Controllers
         {
             try
             {
-                CustomerDB.CustomerRegister(customer);
+                var custInfo = CustomerDB.GetCustomerInfo(customer.UserName);
 
-                return RedirectToAction("Index");
+
+                if(custInfo != null)
+                {
+                    ViewBag.usertaken = "User ID Already Exist";
+                    return View();
+                }
+
+                else
+                {
+                    if (customer.CustEmail == null)
+                    {
+                        customer.CustEmail = "";
+                    }
+                    if (customer.CustBusPhone == null)
+                    {
+                        customer.CustBusPhone = "";
+                    }
+                    customer.Password = Crypto.Hash(customer.Password);
+                    CustomerDB.CustomerRegister(customer);
+
+                    return RedirectToAction("Login");
+                }
             }
             catch
             {
                 return View();
             }
         }
-
+        
         // GET: Customer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            Customer currentCust = CustomerDB.GetCustomerDetails(id);
-            return View(currentCust);
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                int id = Convert.ToInt32(Session["UserID"]);
+                Customer currentCust = CustomerDB.GetCustomerDetails(id);
+                return View(currentCust);
+            }
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Customer newCustomer)
+        public ActionResult Edit(Customer newCustomer)
         {
             try
             {
+                int id = Convert.ToInt32(Session["UserID"]);
                 Customer currentCust = CustomerDB.GetCustomerDetails(id);
+                newCustomer.Password = Crypto.Hash(newCustomer.Password);
+                if (newCustomer.CustEmail == null)
+                {
+                    newCustomer.CustEmail = "";
+                }
+                if(newCustomer.CustBusPhone == null)
+                {
+                    newCustomer.CustBusPhone = "";
+                }
+               
                 int count = CustomerDB.UpdateCustomer(currentCust, newCustomer);
                 if (count == 0)// no update due to concurrency issue
                     TempData["errorMessage"] = "Update aborted. " +
                         "Another user changed or deleted this row";
+
                 else
                     TempData["errorMessage"] = "";
                 return RedirectToAction("Index");
@@ -73,7 +127,7 @@ namespace Team6Workshop5.Controllers
                 return View();
             }
         }
-
+        
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
@@ -97,8 +151,55 @@ namespace Team6Workshop5.Controllers
         }
         public ActionResult Login()
         {
+            CustomerLogin loginInfo = new CustomerLogin();
 
-            return View();
+            return View(loginInfo);
+        }
+
+        [HttpPost]
+
+        public ActionResult Login(CustomerLogin login)
+        {
+            var databaseUser = CustomerDB.CustomerLogin(login.UserName);
+
+            if(ModelState.IsValid)
+            {
+                if (databaseUser is null)
+                {
+                    //ModelState.AddModelError("Error", "User Name is Registered");
+                    ViewBag.invalid = "Invalid User";
+                    return View();
+                }
+                
+                else
+                {
+                    //if(databaseUser.Password != Crypto.Hash(login.Password))
+
+
+                    if(string.Compare(Crypto.Hash(login.Password),databaseUser.Password)==0)
+              
+                    {
+                        ViewBag.Password = "Invalid Password";
+                        return View();
+                    }
+
+                    else
+                    {
+                        Session["UserID"] = databaseUser.CustomerId;
+                        Session["CustFirstName"] = databaseUser.CustFirstName;
+                    }
+                    
+                }
+            }
+           
+            return RedirectToAction("Index","Customer");
+        }
+
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Login");
         }
     }
 }

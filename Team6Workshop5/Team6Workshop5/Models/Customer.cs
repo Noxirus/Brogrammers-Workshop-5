@@ -45,16 +45,12 @@ namespace Team6Workshop5.Models
         [StringLength(20)]
         [Display(Name = "Home Phone")]
         public string CustHomePhone { get; set; }
-        [Required]
         [StringLength(20)]
         [Display(Name = "Business Phone")]
         public string CustBusPhone { get; set; }
         [StringLength(50)]
         [Display(Name = "Email")]
         public string CustEmail { get; set; }
-        [ForeignKey("Agents")]
-        [Display(Name = "Agent ID")]
-        public int AgentId { get; set; }
         [Required]
         [StringLength(25)]
         public string UserName { get; set; }

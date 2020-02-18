@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Travel Experts Application</title>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -19,18 +19,12 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Your Account", "Index", "Customer")</li>
-                    <li>@Html.ActionLink("Register Now", "Create", "Customer")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Customer")</li>
-                </ul>*@
-
-                @Html.Partial("_loginPartial")
+                </ul>
             </div>
         </div>
     </div>
@@ -38,11 +32,7 @@
         @RenderBody()
         <hr />
         <footer>
-<<<<<<< HEAD
-            <p>&copy; @DateTime.Now.Year - The Brogrammers</p>
-=======
-            <p>&copy; @DateTime.Now.Year - BroGrammers</p>
->>>>>>> master
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 

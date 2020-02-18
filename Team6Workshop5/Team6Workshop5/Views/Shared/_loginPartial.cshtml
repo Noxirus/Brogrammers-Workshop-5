@@ -1,0 +1,48 @@
+﻿@if (Session["UserID"] == null)
+
+{<ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <li>@Html.ActionLink("Your Account", "Login", "Customer")</li>
+
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>
+            @Html.ActionLink("Register", "Create", "Customer", null, null)
+        </li>
+
+        <li>
+            @Html.ActionLink("Login", "Login", "Customer", null, null)
+        </li>
+    </ul>
+
+}
+
+
+else
+{
+
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <li>@Html.ActionLink("Your Account", "Index", "Customer")</li>
+
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+
+        <li>
+            @Html.ActionLink("Hello " + Session["CustFirstName"], "Create", "Customer", null, null)
+        </li>
+
+        <li>
+            @Html.ActionLink("Logout", "Logout", "Customer", null, null)
+        </li>
+    </ul>
+
+}
+
