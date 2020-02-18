@@ -144,8 +144,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\danfo.jfif" />
     <Content Include="Images\douglashalliday.jfif" />
     <Content Include="Images\douglashalliday.jpg" />
+    <Content Include="Images\loneroad.jfif" />
     <Content Include="Images\new_office.jpg" />
     <Content Include="Images\oldoffice1.png" />
     <Content Include="Images\oldPoffice.jfif" />
@@ -153,8 +155,6 @@
     <Content Include="Images\travel.jfif" />
     <Content Include="Images\travel1.jfif" />
     <Content Include="Images\travel1.jpg" />
-    <Content Include="Images\travel2.jfif" />
-    <Content Include="Images\travel2.jpg" />
     <Content Include="Images\travellers.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -190,7 +190,6 @@
     <Content Include="Views\Shared\_loginPartial.cshtml" />
     <Content Include="Views\AccountBookings\Pack.cshtml" />
     <Content Include="Views\Shared\BookingsLayout.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
