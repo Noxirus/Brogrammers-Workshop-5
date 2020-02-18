@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    /*background-image:url('../Images/travel2.jpg');*/
+    background-image:url('../Images/travel2.jpg');
     color:white;
 }
 
@@ -37,4 +37,8 @@ h3 {
 }
 p {
     font-size: 10px;
+}
+
+footer{
+    text-align:center;
 }
