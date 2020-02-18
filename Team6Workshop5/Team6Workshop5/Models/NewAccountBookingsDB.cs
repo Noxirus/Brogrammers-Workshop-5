@@ -24,11 +24,7 @@ namespace Team6Workshop5.Models
                             + "on BD.ProductSupplierId= PS.ProductSupplierId "
                             + "join Products as P "
                             + "on Ps.ProductId=P.ProductId "
-                            + "where B.BookingId != CASE "
-                            + "WHEN @BookingId = '0' THEN B.BookingId "
-                            + "ELSE @BookingId "
-                            + "END "
-                            + "AND C.CustomerId = @CustomerId "; 
+                            + "where C.CustomerId = @CustomerId "; 
 
             string sql2 = "Select C.CustFirstName, P.ProdName, BD.BasePrice, B.BookingId from "
                             + "Customers as C join Bookings as B "
@@ -95,10 +91,6 @@ namespace Team6Workshop5.Models
                 {
                     cmd.Parameters.AddWithValue("@CustomerId", custId);
 
-                    if (packbooking.PACKBookingId != null)
-                        cmd.Parameters.AddWithValue("@BookingId", packbooking.PRODBookingId);
-                    else
-                        cmd.Parameters.AddWithValue("@BookingId", "0");
 
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
