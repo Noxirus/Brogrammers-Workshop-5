@@ -6,12 +6,12 @@
     ViewBag.Title = "Pack";
 }
 
-<h1>Bookings</h1>
+<h2>Bookings Details</h2>
 
 
 @* FOR PACKAGES *@
 
-<h3>Packages</h3>
+<h3 style="float:left">Packages</h3>
 <table class="table">
     <tr>
         <th>
@@ -48,29 +48,26 @@
 
 @* FOR PACK TOTAL *@
 <table class="table">
-    <tr>
+    <tr style="float:right">
         <th>
             @Html.DisplayNameFor(model => model.PACKTotal)
         </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        if ((item.PACKTotal) != null)
+        @foreach (var item in Model)
         {
-            <tr>
+            if ((item.PACKTotal) != null)
+            {
+
                 <td style="color:red">
                     @Html.DisplayFor(modelItem => item.PACKTotal)
                 </td>
-
-            </tr>
+            }
         }
-    }
-
+    </tr>
 </table>
 
 @* FOR PRODUCTS *@
-<h3>Products</h3>
+<h3 style="float:left">Products</h3>
 <table class="table">
     <tr>
         <th>
@@ -112,24 +109,25 @@
 
 @* FOR PACK TOTAL *@
 <table class="table">
-    <tr>
+    <tr style="float:right">
         <th>
             @Html.DisplayNameFor(model => model.PRODTotal)
         </th>
-    </tr>
 
-    @foreach (var items in Model)
-    {
-        if ((items.PRODTotal) != null)
+
+        @foreach (var items in Model)
         {
-            <tr>
+            if ((items.PRODTotal) != null)
+            {
+
                 <td style="color:red">
                     @Html.DisplayFor(modelItem => items.PRODTotal)
                 </td>
 
-            </tr>
+            }
         }
-    }
+    </tr>
+
 
 </table>
 
