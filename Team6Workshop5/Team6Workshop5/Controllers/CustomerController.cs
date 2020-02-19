@@ -119,9 +119,15 @@ namespace Team6Workshop5.Controllers
         {
             try
             {
+                var custInfo = CustomerDB.GetCustomerInfo(newCustomer.UserName);
                 int id = Convert.ToInt32(Session["UserID"]);
                 Customer currentCust = CustomerDB.GetCustomerDetails(id);
                 newCustomer.Password = Crypto.Hash(newCustomer.Password);
+                if (custInfo != null && currentCust.UserName != custInfo.UserName)
+                {
+                    ViewBag.usertaken = "User ID Already Exist";
+                    return View();
+                }
                 if (newCustomer.CustEmail == null)
                 {
                     newCustomer.CustEmail = "";
