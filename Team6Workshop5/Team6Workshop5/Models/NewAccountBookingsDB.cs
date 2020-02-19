@@ -109,8 +109,6 @@ namespace Team6Workshop5.Models
                             packbooking.PACKPkgBasePrice = Convert.ToDecimal(dr["PkgBasePrice"]);
                             packbooking.PACKBookingId = Convert.ToInt32(dr["BookingId"]);
 
-
-                            test += packbooking.PACKBasePrice;
                             test += packbooking.PACKPkgBasePrice;
 
                             //sending the packes information to the list
