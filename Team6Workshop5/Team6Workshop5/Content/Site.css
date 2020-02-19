@@ -1,8 +1,12 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image:url('../Images/travel2.jpg');
-    color:white;
+    background-image: url('../Images/loneroad.png');
+    width: 100%;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
 }
 
 /* Set padding to keep content from hitting the edges */
