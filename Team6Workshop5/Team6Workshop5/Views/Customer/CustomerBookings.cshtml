@@ -18,134 +18,112 @@
 @* FOR PACKAGES *@
 
 <div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <h3 style="float:left">Packages</h3>
+    <div class="jumbotron" style="background: rgba(204, 204, 204, 0.5)">
+        <div class="row">
+            <div class="col-sm">
+                <h3 style="float:left">Packages</h3>
+            </div>
         </div>
-    </div>
 
+        <div class="row">
+            <h4 class="col-md-2 col-sm-2 col-xs-2">@Html.DisplayNameFor(model => model.PACKBookingId)</h4>
+            <h4 class="col-md-3 col-sm-3 col-xs-3">@Html.DisplayNameFor(model => model.PACKPkgName)</h4>
+            <h4 class="col-md-7 col-sm-7 col-xs-7">@Html.DisplayNameFor(model => model.PACKPkgBasePrice)</h4>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
 
-    <table class="table">
-
-        <tr class="row">
-            <th class="col-sm">
-                @Html.DisplayNameFor(model => model.PACKPkgName)
-            </th>
-            <th class="col-sm">
-                @Html.DisplayNameFor(model => model.PACKPkgBasePrice)
-            </th>
-            <th class="col-sm">
-                @Html.DisplayNameFor(model => model.PACKBookingId)
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            if ((item.PACKProdName) != null)
+        <div class="row">
+            @foreach (var item in Model)
             {
-                <tr class="row">
-                    <td class="col-sm">
-                        @Html.DisplayFor(modelItem => item.PACKPkgName)
-                    </td>
-                    <td class="col-sm">
-                        @Html.DisplayFor(modelItem => item.PACKPkgBasePrice)
-                    </td>
-                    <td class="col-sm">
-                        @Html.DisplayFor(modelItem => item.PACKBookingId)
-                    </td>
-                </tr>
-
+                if ((item.PACKProdName) != null)
+                {
+                    <div class="col-md-2 col-sm-2 col-xs-2">@Html.DisplayFor(modelItem => item.PACKBookingId)</div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">@Html.DisplayFor(modelItem => item.PACKPkgName)</div>
+                    <div class="col-md-7 col-sm-7 col-xs-7">@Html.DisplayFor(modelItem => item.PACKPkgBasePrice)</div>
+                }
             }
-        }
+        </div>
 
-    </table>
+        <div class="row">
+            <hr />
+        </div>
 
+        @* FOR PACK TOTAL *@
 
-    @* FOR PACK TOTAL *@
-    <table class="table">
-        <tr style="float:right">
-            <th>
-                @Html.DisplayNameFor(model => model.PACKTotal)
-            </th>
+        <div class="row">
+            <h4 class="col-md-1 col-sm-1 col-xs-1 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">@Html.DisplayNameFor(model => model.PACKTotal)</h4>
 
             @foreach (var item in Model)
             {
                 if ((item.PACKTotal) != null)
                 {
-
-                    <td>
+                    <h4 class="col-md-2 col-sm-2 col-xs-2">
                         @Html.DisplayFor(modelItem => item.PACKTotal)
-                    </td>
+                    </h4>
                 }
             }
-        </tr>
-    </table>
-
-    @* FOR PRODUCTS *@
-    <h3 style="float:left">Products</h3>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PRODProdName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PRODBasePrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PRODBookingId)
-            </th>
-            <th></th>
-        </tr>
+        </div>
+    </div>
+</div>
 
 
+@* FOR PRODUCTS *@
+
+<div class="container">
+    <div class="jumbotron" style="background: rgba(204, 204, 204, 0.5)">
+        <div class="row">
+            <div class="col-sm">
+                <h3 style="float:left">Products</h3>
+            </div>
+        </div>
 
 
-        @foreach (var items in Model)
-        {
+        <div class="row">
+            <h4 class="col-md-2 col-sm-2 col-xs-2">@Html.DisplayNameFor(model => model.PRODBookingId)</h4>
+            <h4 class="col-md-3 col-sm-3 col-xs-3">@Html.DisplayNameFor(model => model.PRODProdName)</h4>
+            <h4 class="col-md-7 col-sm-7 col-xs-7">@Html.DisplayNameFor(model => model.PRODBasePrice)</h4>
+        </div>
+        <div class="row">
+            <hr />
+        </div>
 
-            if ((items.PRODProdName) != null)
+        <div class="row">
+            @foreach (var items in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => items.PRODProdName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => items.PRODBasePrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => items.PRODBookingId)
-                    </td>
-                </tr>
+                if ((items.PRODProdName) != null)
+                {
+                    <div class="col-md-2 col-sm-2 col-xs-2">@Html.DisplayFor(modelItem => items.PRODBookingId)</div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">@Html.DisplayFor(modelItem => items.PRODProdName)</div>
+                    <div class="col-md-7 col-sm-7 col-xs-7">@Html.DisplayFor(modelItem => items.PRODBasePrice)</div>
+
+                }
             }
-        }
+        </div>
 
+        <div class="row">
+            <hr />
+        </div>
 
-    </table>
+        @* FOR PROD TOTAL *@
 
-    @* FOR PACK TOTAL *@
-    <table class="table">
-        <tr style="float:right">
-            <th>
-                @Html.DisplayNameFor(model => model.PRODTotal)
-            </th>
-
+        <div class="row">
+            <h4 class="col-md-1 col-sm-1 col-xs-1 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">@Html.DisplayNameFor(model => model.PRODTotal)</h4>
 
             @foreach (var items in Model)
             {
                 if ((items.PRODTotal) != null)
                 {
-
-                    <td>
+                    <h4 class="col-md-2 col-sm-2 col-xs-2">
                         @Html.DisplayFor(modelItem => items.PRODTotal)
-                    </td>
-
+                    </h4>
                 }
             }
-        </tr>
+        </div>
 
-
-    </table>
-
+    </div>
 </div>
+
 
 

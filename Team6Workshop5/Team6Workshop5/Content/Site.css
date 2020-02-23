@@ -29,7 +29,7 @@ textarea {
     max-width: 280px;
 }
 .jumbotron{
-    text-align: center
+    text-align: left;
 }
 h1 {
     text-align: center;

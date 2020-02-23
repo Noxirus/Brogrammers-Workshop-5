@@ -8,7 +8,7 @@
 
 <div style="font-size:20px">
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal jumbotron" style="background: rgba(204, 204, 204, 0.5)">
         <dt>
             @Html.DisplayNameFor(model => model.CustFirstName)
         </dt>
@@ -96,10 +96,14 @@
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
+        <p>
 
+        </p>
+        <p style="font-size:20px">
+            @Html.ActionLink("Update Your Information", "Edit") |
+            @Html.ActionLink("Home Page", "Index", "Home")
+        </p>
     </dl>
+
 </div>
-<p style="font-size:20px">
-    @Html.ActionLink("Update Your Information", "Edit") |
-    @Html.ActionLink("Home Page", "Index", "Home")
-</p>
+
