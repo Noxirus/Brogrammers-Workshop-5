@@ -9,20 +9,22 @@ namespace Team6Workshop5.Controllers
 {
     public class CustomerController : Controller
     {
-        Customer customer;
+        Customer customer; //customer reference
         // GET: Customer
        
         public ActionResult Index()
         {
+            //check for nulls and redirect if necessary
             if (Session["UserID"] == null)
             {
                return RedirectToAction("Login");
             }
+            //return customer details
             else
             {
                 int id = Convert.ToInt32(Session["UserID"]);
 
-                customer = CustomerDB.GetCustomerDetails(id); // needs to pass in a variable reference to the customer ID
+                customer = CustomerDB.GetCustomerDetails(id);
                 return View(customer);
             }
 
@@ -76,7 +78,7 @@ namespace Team6Workshop5.Controllers
             {
                 var custInfo = CustomerDB.GetCustomerInfo(customer.UserName);
 
-
+                // check to see if the username already exists
                 if(custInfo != null)
                 {
                     ViewBag.usertaken = "User ID Already Exist";
@@ -108,6 +110,7 @@ namespace Team6Workshop5.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit()
         {
+            //check to see if user is logged in else redirect to login
             if (Session["UserID"] == null)
             {
                 return RedirectToAction("Login");
@@ -130,6 +133,7 @@ namespace Team6Workshop5.Controllers
                 int id = Convert.ToInt32(Session["UserID"]);
                 Customer currentCust = CustomerDB.GetCustomerDetails(id);
                 newCustomer.Password = Crypto.Hash(newCustomer.Password);
+                // check to see if username has been taken
                 if (custInfo != null && currentCust.UserName != custInfo.UserName)
                 {
                     ViewBag.usertaken = "User ID Already Exist";
@@ -180,6 +184,8 @@ namespace Team6Workshop5.Controllers
                 return View();
             }
         }
+
+        // Controller for Login
         public ActionResult Login()
         {
             CustomerLogin loginInfo = new CustomerLogin();
@@ -187,6 +193,7 @@ namespace Team6Workshop5.Controllers
             return View(loginInfo);
         }
 
+        // Controller for Login
         [HttpPost]
 
         public ActionResult Login(CustomerLogin login)

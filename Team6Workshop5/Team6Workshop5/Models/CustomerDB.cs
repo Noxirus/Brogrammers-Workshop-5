@@ -9,6 +9,7 @@ namespace Team6Workshop5.Models
 {
     public class CustomerDB
     {
+        // pass in customer id and return their details
         public static Customer GetCustomerDetails(int custId)
         {
             Customer cust = null;
@@ -45,6 +46,7 @@ namespace Team6Workshop5.Models
             }
             return cust;
         }
+        // register customers information
         public static void CustomerRegister(Customer customer)
         {
             string sql = "INSERT INTO Customers "
@@ -71,6 +73,8 @@ namespace Team6Workshop5.Models
                 }
             }
         }
+
+        // edit customers information
         public static int UpdateCustomer(Customer original_Customer,
     Customer new_Customer)
         {
@@ -114,6 +118,7 @@ namespace Team6Workshop5.Models
                 }
             return updateCount;
         }
+        //check login credentials
         public static Customer CustomerLogin(string custUserName)
         {
             Customer cust = null;
@@ -140,7 +145,7 @@ namespace Team6Workshop5.Models
             }
             return cust;
         }
-
+        // get the customers information for checking with database
         public static Customer GetCustomerInfo(string userName)
         {
             Customer cust = null;
