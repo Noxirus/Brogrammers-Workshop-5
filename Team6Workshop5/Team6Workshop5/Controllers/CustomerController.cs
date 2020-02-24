@@ -173,6 +173,8 @@ namespace Team6Workshop5.Controllers
                 return View();
             }
         }
+
+        // Controller for Login
         public ActionResult Login()
         {
             CustomerLogin loginInfo = new CustomerLogin();
@@ -180,6 +182,7 @@ namespace Team6Workshop5.Controllers
             return View(loginInfo);
         }
 
+        // Controller for Login
         [HttpPost]
 
         public ActionResult Login(CustomerLogin login)
