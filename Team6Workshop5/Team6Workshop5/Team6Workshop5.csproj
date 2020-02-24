@@ -129,8 +129,8 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDB.cs" />
     <Compile Include="Models\CustomerLogin.cs" />
-    <Compile Include="Models\NEWAccountBookings.cs" />
-    <Compile Include="Models\NewAccountBookingsDB.cs" />
+    <Compile Include="Models\CustomerBookings.cs" />
+    <Compile Include="Models\CustomerBookingsDB.cs" />
     <Compile Include="Models\TravelExpertsDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

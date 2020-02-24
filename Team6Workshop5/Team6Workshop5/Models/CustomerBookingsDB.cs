@@ -6,12 +6,13 @@ using System.Web;
 
 namespace Team6Workshop5.Models
 {
-    public class NewAccountBookingsDB
+    public class CustomerBookingsDB
     {
-        public List<int?> testList = new List<int?>();
-        public static List<NEWAccountBookings> GetPackBookings(int custId)
+
+        public static List<CustomerBookings> GetPackBookings(int custId) // custID = userID which is passed by the controller
         {
-            List<NEWAccountBookings> accPackBookingsList = new List<NEWAccountBookings>();
+            //make an empty list
+            List<CustomerBookings> accPackBookingsList = new List<CustomerBookings>();
 
             string sql1 = "Select C.CustFirstName, P.ProdName,BD.BasePrice, Pack.PkgName,Pack.PkgBasePrice,B.BookingId from "
                             + "Customers as C join Bookings as B "
@@ -40,62 +41,69 @@ namespace Team6Workshop5.Models
 
             using (SqlConnection con = new SqlConnection(TravelExpertsDB.GetConnectionString()))
             {
-                NEWAccountBookings packbooking;
-                packbooking = new NEWAccountBookings();
+                //used in PACKAGES after PRODUCTS
+                CustomerBookings packbooking;
+                packbooking = new CustomerBookings();
 
                 
 
                 //PRODUCTS
                 using (SqlCommand cmd = new SqlCommand(sql2, con))
                 {
+                    //put userID into sql
                     cmd.Parameters.AddWithValue("@CustomerId", custId);
 
-
-
+                    //open connectoin
                     con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    NEWAccountBookings prodbooking;
-                    
-                    decimal? test = 0;
+                    SqlDataReader dr = cmd.ExecuteReader(); //variable to capture all the data that is gathered by sql query
+                    CustomerBookings prodbooking; // creating object based off of customerBookings model
 
-                    while (dr.Read())
+                    decimal? total = 0; // empty var for use later
+
+                    while (dr.Read()) //for each set of data that is sent by the sql query
                     {
-                        if (dr["ProdName"] != null)
+                        if (dr["ProdName"] != null) // if there is relevant data
                         {
-                            prodbooking = new NEWAccountBookings();
+                            //put data into object earlier made object
+                            prodbooking = new CustomerBookings();
                             prodbooking.PRODCustFirstName = dr["CustFirstName"].ToString();
                             prodbooking.PRODProdName = dr["ProdName"].ToString();
                             prodbooking.PRODBasePrice = Convert.ToDecimal(dr["BasePrice"]);
                             prodbooking.PRODBookingId = Convert.ToInt32(dr["BookingId"]);
 
+                            //add price to the total for each set of data
+                            total += prodbooking.PRODBasePrice;
 
-
-                            test += prodbooking.PRODBasePrice;
-
-
-                            //sending the packes information to the list
+                            //sending the prod information to the list
                             accPackBookingsList.Add(prodbooking);
                         }
                     }
+                    //close the reader
                     dr.Close();
 
-                    NEWAccountBookings prodbookingtest = new NEWAccountBookings();
-                    prodbookingtest.PRODTotal = test;
+                    //make another object
+                    CustomerBookings prodbookingtest = new CustomerBookings();
+                    //put data into object
+                    prodbookingtest.PRODTotal = total;
+                    //send object to the list
                     accPackBookingsList.Add(prodbookingtest);
 
+                    //close connection
                     con.Close();
                 }
 
                 //PACKAGES
+                //follow same principals as prods, please refer to PRODUCTS for comments
                 using (SqlCommand cmd = new SqlCommand(sql1, con))
                 {
                     cmd.Parameters.AddWithValue("@CustomerId", custId);
 
 
                     con.Open();
+
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    decimal? test = 0;
+                    decimal? total = 0;
 
 
                     while (dr.Read())
@@ -109,7 +117,7 @@ namespace Team6Workshop5.Models
                             packbooking.PACKPkgBasePrice = Convert.ToDecimal(dr["PkgBasePrice"]);
                             packbooking.PACKBookingId = Convert.ToInt32(dr["BookingId"]);
 
-                            test += packbooking.PACKPkgBasePrice;
+                            total += packbooking.PACKPkgBasePrice;
 
                             //sending the packes information to the list
                             accPackBookingsList.Add(packbooking);
@@ -118,14 +126,13 @@ namespace Team6Workshop5.Models
                     }
                     dr.Close();
 
-                    NEWAccountBookings packbookingtest = new NEWAccountBookings();
-                    packbookingtest.PACKTotal = test;
+                    CustomerBookings packbookingtest = new CustomerBookings();
+                    packbookingtest.PACKTotal = total;
                     accPackBookingsList.Add(packbookingtest);
-
 
                 }
             }
-
+            //return the list to whatever calls the method
             return accPackBookingsList;
         }
     }
