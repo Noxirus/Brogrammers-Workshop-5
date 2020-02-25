@@ -1,10 +1,11 @@
 ﻿
-@model IEnumerable<Team6Workshop5.Models.NEWAccountBookings>
+@model IEnumerable<Team6Workshop5.Models.CustomerBookings>
 
 
 @{
-    ViewBag.Title = "Pack";
+    ViewBag.Title = "Customer Bookings";
 }
+@* Title *@
 <div class="container">
     <div class="row">
         <div class="col-sm">
@@ -17,24 +18,31 @@
 
 @* FOR PACKAGES *@
 
+@* creating bootstrap container *@
 <div class="container">
+    @* creating backdrop for displayed information *@
     <div class="jumbotron" style="background: rgba(204, 204, 204, 0.5)">
         <div class="row">
             <div class="col-sm">
+                @* title for "table" *@
                 <h3 style="float:left">Packages</h3>
             </div>
         </div>
 
+        @* titles for each column in "table" *@
         <div class="row">
             <h4 class="col-md-2 col-sm-2 col-xs-2">@Html.DisplayNameFor(model => model.PACKBookingId)</h4>
             <h4 class="col-md-3 col-sm-3 col-xs-3">@Html.DisplayNameFor(model => model.PACKPkgName)</h4>
             <h4 class="col-md-7 col-sm-7 col-xs-7">@Html.DisplayNameFor(model => model.PACKPkgBasePrice)</h4>
         </div>
         <div class="row">
+            @* black line that goes across "table" *@
             <hr />
         </div>
 
+
         <div class="row">
+            @* foreach item in the list display all the information stored in the item *@
             @foreach (var item in Model)
             {
                 if ((item.PACKProdName) != null)
@@ -54,7 +62,7 @@
 
         <div class="row">
             <h4 class="col-md-1 col-sm-1 col-xs-1 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">@Html.DisplayNameFor(model => model.PACKTotal)</h4>
-
+            @* get the total in the list and display it *@
             @foreach (var item in Model)
             {
                 if ((item.PACKTotal) != null)
@@ -70,7 +78,7 @@
 
 
 @* FOR PRODUCTS *@
-
+@* has the same information, just for products, see PACKAGES for comments *@
 <div class="container">
     <div class="jumbotron" style="background: rgba(204, 204, 204, 0.5)">
         <div class="row">

@@ -30,20 +30,27 @@ namespace Team6Workshop5.Controllers
 
         }
 
+
+        //GET: CustomerBookings
         public ActionResult CustomerBookings()
         {
+            //if user is not logged in
             if (Session["UserID"] == null)
             {
                 return RedirectToAction("Login");
             }
+            //if user is logged in
             else
             {
-                List<NEWAccountBookings> accPackBookingsList = new List<NEWAccountBookings>();
+                //makes new list from the model
+                List<CustomerBookings> accPackBookingsList = new List<CustomerBookings>();
+                //grabs userID from the currect session for SQL statement
                 int id = Convert.ToInt32(Session["UserID"]);
 
-                accPackBookingsList = NewAccountBookingsDB.GetPackBookings(id);
+                //populates the list based off of sql command
+                accPackBookingsList = CustomerBookingsDB.GetPackBookings(id);
 
-
+                //sends list to the view
                 return View(accPackBookingsList);
             }
         }
